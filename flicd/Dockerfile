@@ -25,5 +25,10 @@ RUN case $(arch) in \
 WORKDIR /data
 VOLUME ["/data"]
 EXPOSE 5551
-ENTRYPOINT ["/usr/bin/flicd"]
-CMD ["-f", "/data/flic-db", "-s", "0.0.0.0", "-p", "5551"]
+#ENTRYPOINT ["/usr/bin/flicd"]
+
+# Copy data for add-on
+COPY run.sh /
+RUN chmod a+x /run.sh
+
+CMD [ "/run.sh" ]
